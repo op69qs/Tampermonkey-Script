@@ -13,7 +13,7 @@
 
 (function () {
    'use strict';
-
+   console.log('Unlimited_downloader: begin');
    // let script = document.createElement('script');
    // script.setAttribute('type', 'text/javascript');
    // script.src = "https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js";
@@ -32,10 +32,9 @@
       const _MediaSource = window.MediaSource;
       window.MediaSource = function () {
          const mediaSource = new _MediaSource;
-         console.log('begin');
+        
          (function (n) {
             let completeInterval = setInterval(() => {
-               console.log(n.readyState)
                if (n.readyState === 'ended') {
                   console.log(n, 'Completed !');
                   window.isComplete = 1;
