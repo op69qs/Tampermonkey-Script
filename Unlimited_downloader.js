@@ -8,6 +8,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/dabaisuv/Tampermonkey-Script/main/Unlimited_downloader.js
+// @downloadURL  https://raw.githubusercontent.com/dabaisuv/Tampermonkey-Script/main/Unlimited_downloader.js
 // ==/UserScript==
 
 (function () {
@@ -17,7 +18,7 @@
     // script.setAttribute('type', 'text/javascript');
     // script.src = "https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js";
     // document.documentElement.appendChild(script);
-    window.onload = ()=>{
+    window.onload = function(){
     window.audio = [];
     window.video = [];
     window.downloadAll = 0;
