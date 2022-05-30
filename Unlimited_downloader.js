@@ -86,6 +86,7 @@
     
     if(window.autoDownload === 1){
         let autoDownInterval = setInterval(() => {
+            window.quickPlay = 16;
         if(document.querySelector('video').currentTime === document.querySelector('video').duration){
             let a = document.createElement('a');
             a.href = window.URL.createObjectURL(new Blob(window.audio));
