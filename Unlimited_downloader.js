@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unlimited_downloader
 // @namespace    ooooooooo.io
-// @version      0.1.3
+// @version      0.1.4
 // @description  Get video and audio binary streams directly, breaking all download limitations. (As long as you can play, then you can download!)
 // @author       dabaisuv
 // @match        *://*/*
@@ -9,17 +9,20 @@
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/dabaisuv/Tampermonkey-Script/main/Unlimited_downloader.js
 // @downloadURL  https://raw.githubusercontent.com/dabaisuv/Tampermonkey-Script/main/Unlimited_downloader.js
+// @run-at       document-start
 // ==/UserScript==
 
 (function () {
    'use strict';
-   console.log('Unlimited_downloader: begin');
+   console.log(`Unlimited_downloader: begin......${location.href}`);
+
    // let script = document.createElement('script');
    // script.setAttribute('type', 'text/javascript');
    // script.src = "https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js";
    // document.documentElement.appendChild(script);
 
    //Setting it to 1 will automatically download the video after it finishes playing, and it will automatically play at 16x speed
+
    window.autoDownload = 1;
    window.isComplete = 0;
 
@@ -68,6 +71,13 @@
          a.download = 'video.mp4'
          a.click();
          window.downloadAll = 0
+
+
+         // window.open(window.URL.createObjectURL(new Blob(window.audio)));
+         // window.open(window.URL.createObjectURL(new Blob(window.video)));
+         // window.downloadAll = 0
+
+
          // const { createFFmpeg } = FFmpeg;
          // const ffmpeg = createFFmpeg({ log: true });
          // (async () => {
@@ -107,8 +117,37 @@
             a.download = 'video.mp4'
             a.click();
             window.isComplete = 0;
+
+            // window.open(window.URL.createObjectURL(new File([new Blob(window.audio)], 'audio.mp4')));
+            // window.open(window.URL.createObjectURL(new File([new Blob(window.video)], 'video.mp4')));
+            // window.isComplete = 0;
+
+            // GM_download(window.URL.createObjectURL(new Blob(window.audio)));
+            // GM_download(window.URL.createObjectURL(new Blob(window.video)));
+            // window.isComplete = 0;
+
          }
       }, 2000);
    }
+
+   (function (that) {
+      let removeSandboxInterval = setInterval(() => {
+         if (that.document.querySelectorAll('iframe')[0] !== undefined) {
+            that.document.querySelectorAll('iframe').forEach((v, i, a) => {
+               let ifr = v;
+               // ifr.sandbox.add('allow-popups');
+               ifr.removeAttribute('sandbox');
+               const parentElem = that.document.querySelectorAll('iframe')[i].parentElement;
+               a[i].remove();
+               parentElem.appendChild(ifr);
+            });
+            clearInterval(removeSandboxInterval);
+         }
+      }, 1000);
+   })(window);
+
+
+
+
    // Your code here...
 })();
