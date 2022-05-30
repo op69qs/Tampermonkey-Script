@@ -22,58 +22,42 @@
    //Setting it to 1 will automatically download the video after it finishes playing, and it will automatically play at 16x speed
    window.autoDownload = 1;
    window.isComplete = 0;
-   window.onload = function () {
-      window.audio = [];
-      window.video = [];
-      window.downloadAll = 0;
-      window.quickPlay = 1.0;
 
-      const _Media_Prototype = window.MediaSource.prototype;
-      const _MediaSource = window.MediaSource;
-      window.MediaSource = function () {
-         const mediaSource = new _MediaSource;
+   window.audio = [];
+   window.video = [];
+   window.downloadAll = 0;
+   window.quickPlay = 1.0;
 
-         (function (n) {
-            let completeInterval = setInterval(() => {
-               if (n.readyState === 'ended') {
-                  console.log(n, 'Completed !');
-                  window.isComplete = 1;
-                  clearInterval(completeInterval);
-               }
-            }, 500);
-         })(mediaSource)
-
-         return mediaSource;
-      }
-      window.MediaSource.prototype = _Media_Prototype;
-      window.MediaSource.prototype.constructor = window.MediaSource;
-
-
-
-      const _addSourceBuffer = window.MediaSource.prototype.addSourceBuffer
-      window.MediaSource.prototype.addSourceBuffer = function (mime) {
-         console.log("MediaSource.addSourceBuffer ", mime)
-         if (mime.toString().indexOf('audio') !== -1) {
-            window.audio = [];
-            console.log('audio array cleared.');
-         } else if (mime.toString().indexOf('video') !== -1) {
-            window.video = [];
-            console.log('video array cleared.');
-         }
-         var sourceBuffer = _addSourceBuffer.call(this, mime)
-         var _append = sourceBuffer.appendBuffer
-         sourceBuffer.appendBuffer = function (buffer) {
-            console.log(mime, buffer);
-            if (mime.toString().indexOf('audio') !== -1) {
-               window.audio.push(buffer);
-            } else if (mime.toString().indexOf('video') !== -1) {
-               window.video.push(buffer)
-            }
-            _append.call(this, buffer)
-         }
-         return sourceBuffer
-      }
+   const _endOfStream = window.MediaSource.prototype.endOfStream
+   window.MediaSource.prototype.endOfStream = function () {
+      window.isComplete = 1;
+      return _endOfStream.apply(this, arguments)
    }
+
+   const _addSourceBuffer = window.MediaSource.prototype.addSourceBuffer
+   window.MediaSource.prototype.addSourceBuffer = function (mime) {
+      console.log("MediaSource.addSourceBuffer ", mime)
+      if (mime.toString().indexOf('audio') !== -1) {
+         window.audio = [];
+         console.log('audio array cleared.');
+      } else if (mime.toString().indexOf('video') !== -1) {
+         window.video = [];
+         console.log('video array cleared.');
+      }
+      var sourceBuffer = _addSourceBuffer.call(this, mime)
+      var _append = sourceBuffer.appendBuffer
+      sourceBuffer.appendBuffer = function (buffer) {
+         console.log(mime, buffer);
+         if (mime.toString().indexOf('audio') !== -1) {
+            window.audio.push(buffer);
+         } else if (mime.toString().indexOf('video') !== -1) {
+            window.video.push(buffer)
+         }
+         _append.call(this, buffer)
+      }
+      return sourceBuffer
+   }
+
    setInterval(() => {
       if (window.downloadAll === 1) {
          let a = document.createElement('a');
@@ -104,12 +88,12 @@
       }
    }, 2000);
 
-//    setInterval(() => {
-//        if(window.quickPlay !==1.0){
-//              document.querySelector('video').playbackRate = window.quickPlay;
-// }
-//
-//   }, 2000);
+   //    setInterval(() => {
+   //        if(window.quickPlay !==1.0){
+   //              document.querySelector('video').playbackRate = window.quickPlay;
+   // }
+   //
+   //   }, 2000);
 
    if (window.autoDownload === 1) {
       let autoDownInterval = setInterval(() => {
