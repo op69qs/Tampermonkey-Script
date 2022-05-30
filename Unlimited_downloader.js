@@ -76,8 +76,8 @@
         }
     }, 2000);
 
-    setInterval(() => {
-        document.querySelector('video').playbackRate = window.quickPlay;
-    }, 2000);
+//     setInterval(() => {
+//         document.querySelector('video').playbackRate = window.quickPlay;
+//     }, 2000);
     // Your code here...
 })();
