@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unlimited_downloader
 // @namespace    ooooooooo.io
-// @version      0.1.2
+// @version      0.1.3
 // @description  Get video and audio binary streams directly, breaking all download limitations. (As long as you can play, then you can download!)
 // @author       dabaisuv
 // @match        *://*/*
