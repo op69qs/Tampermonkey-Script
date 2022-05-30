@@ -18,6 +18,10 @@
     // script.setAttribute('type', 'text/javascript');
     // script.src = "https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js";
     // document.documentElement.appendChild(script);
+    
+    //Setting it to 1 will automatically download the video after it finishes playing, and it will automatically play at 16x speed
+    window.autoDownload = 0;
+    
     window.onload = function(){
     window.audio = [];
     window.video = [];
@@ -76,8 +80,23 @@
         }
     }, 2000);
 
-//     setInterval(() => {
-//         document.querySelector('video').playbackRate = window.quickPlay;
-//     }, 2000);
+    setInterval(() => {
+        document.querySelector('video').playbackRate = window.quickPlay;
+    }, 2000);
+    
+    if(window.autoDownload === 1){
+        let autoDownInterval = setInterval(() => {
+        if(document.querySelector('video').currentTime === document.querySelector('video').duration){
+            let a = document.createElement('a');
+            a.href = window.URL.createObjectURL(new Blob(window.audio));
+            a.download = 'audio.mp4';
+            a.click();
+            a.href = window.URL.createObjectURL(new Blob(window.video));
+            a.download = 'video.mp4'
+            a.click();
+            clearInterval(autoDownInterval);
+        }
+    }, 2000);
+    }
     // Your code here...
 })();
