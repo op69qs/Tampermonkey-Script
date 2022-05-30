@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unlimited_downloader
 // @namespace    ooooooooo.io
-// @version      0.1.1
+// @version      0.1.2
 // @description  Get video and audio binary streams directly, breaking all download limitations. (As long as you can play, then you can download!)
 // @author       dabaisuv
 // @match        *://*/*
@@ -32,7 +32,7 @@
       const _MediaSource = window.MediaSource;
       window.MediaSource = function () {
          const mediaSource = new _MediaSource;
-        
+
          (function (n) {
             let completeInterval = setInterval(() => {
                if (n.readyState === 'ended') {
@@ -108,8 +108,8 @@
 //        if(window.quickPlay !==1.0){
 //              document.querySelector('video').playbackRate = window.quickPlay;
 // }
-
-   }, 2000);
+//
+//   }, 2000);
 
    if (window.autoDownload === 1) {
       let autoDownInterval = setInterval(() => {
