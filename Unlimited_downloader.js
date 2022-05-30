@@ -17,6 +17,7 @@
     // script.setAttribute('type', 'text/javascript');
     // script.src = "https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js";
     // document.documentElement.appendChild(script);
+    window.onload = ()=>{
     window.audio = [];
     window.video = [];
     window.downloadAll = 0;
@@ -43,7 +44,7 @@
             _append.call(this, buffer)
         }
         return sourceBuffer
-    }
+    }}
     setInterval(() => {
         if (window.downloadAll === 1) {
             let a = document.createElement('a');
