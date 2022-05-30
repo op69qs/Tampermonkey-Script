@@ -95,7 +95,8 @@
             a.href = window.URL.createObjectURL(new Blob(window.video));
             a.download = 'video.mp4'
             a.click();
-            clearInterval(autoDownInterval);
+            //clearInterval(autoDownInterval);
+            document.querySelector('video').currentTime = 0;
         }
     }, 2000);
     }
