@@ -104,14 +104,16 @@
       }
    }, 2000);
 
-   setInterval(() => {
-      document.querySelector('video').playbackRate = window.quickPlay;
+//    setInterval(() => {
+//        if(window.quickPlay !==1.0){
+//              document.querySelector('video').playbackRate = window.quickPlay;
+// }
+
    }, 2000);
 
    if (window.autoDownload === 1) {
       let autoDownInterval = setInterval(() => {
-         window.quickPlay = 16.0;
-         //document.querySelector('video').currentTime === document.querySelector('video').duration
+         //document.querySelector('video').playbackRate = 16.0;
          if (window.isComplete === 1) {
             let a = document.createElement('a');
             a.href = window.URL.createObjectURL(new Blob(window.audio));
