@@ -36,6 +36,10 @@
       window.isComplete = 1;
       return _endOfStream.apply(this, arguments)
    }
+   window.MediaSource.prototype.endOfStream.toString = function() {
+       onsole.log('endOfStream hook is detecting!');
+      return _endOfStream.toString();
+   }
 
    const _addSourceBuffer = window.MediaSource.prototype.addSourceBuffer
    window.MediaSource.prototype.addSourceBuffer = function (mime) {
