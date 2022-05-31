@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unlimited_downloader
 // @namespace    ooooooooo.io
-// @version      0.1.5
+// @version      0.1.6
 // @description  Get video and audio binary streams directly, breaking all download limitations. (As long as you can play, then you can download!)
 // @author       dabaisuv
 // @match        *://*/*
@@ -78,10 +78,10 @@
    function download() {
       let a = document.createElement('a');
       a.href = window.URL.createObjectURL(new Blob(window.audio));
-      a.download = document.title + '_audio.mp4';
+      a.download = 'audio_' + document.title + '.mp4';
       a.click();
       a.href = window.URL.createObjectURL(new Blob(window.video));
-      a.download = document.title + '_video.mp4';
+      a.download = 'video_' + document.title + '.mp4';
       a.click();
       window.downloadAll = 0;
       window.isComplete = 0;
