@@ -79,7 +79,8 @@
       a.href = window.URL.createObjectURL(new Blob(window.video));
       a.download = document.title + '_video.mp4';
       a.click();
-      window.downloadAll = 0
+      window.downloadAll = 0;
+      window.isComplete = 0;
 
 
       // window.open(window.URL.createObjectURL(new Blob(window.audio)));
