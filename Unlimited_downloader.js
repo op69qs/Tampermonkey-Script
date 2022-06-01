@@ -1,8 +1,10 @@
 // ==UserScript==
 // @name         Unlimited_downloader
+// @name:zh-CN   无限制下载器
 // @namespace    ooooooooo.io
-// @version      0.1.7
+// @version      0.1.8
 // @description  Get video and audio binary streams directly, breaking all download limitations. (As long as you can play, then you can download!)
+// @description:zh-Cn  直接获取视频和音频二进制流，打破所有下载限制。（只要你可以播放，你就可以下载！）
 // @author       dabaisuv
 // @match        *://*/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
