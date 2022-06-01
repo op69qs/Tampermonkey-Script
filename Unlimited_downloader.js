@@ -16,16 +16,12 @@
    'use strict';
    console.log(`Unlimited_downloader: begin......${location.href}`);
 
-   // let script = document.createElement('script');
-   // script.setAttribute('type', 'text/javascript');
-   // script.src = "https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js";
-   // document.documentElement.appendChild(script);
 
-   //Setting it to 1 will automatically download the video after it finishes playing, and it will automatically play at 16x speed
-
+   //Setting it to 1 will automatically download the video after it finishes playing.
    window.autoDownload = 1;
+   
+   
    window.isComplete = 0;
-
    window.audio = [];
    window.video = [];
    window.downloadAll = 0;
