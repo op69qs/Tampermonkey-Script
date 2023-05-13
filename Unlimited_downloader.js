@@ -2,11 +2,13 @@
 // @name         Unlimited_downloader
 // @name:zh-CN   无限制下载器
 // @namespace    ooooooooo.io
-// @version      0.1.8
+// @version      0.1.9
 // @description  Get video and audio binary streams directly, breaking all download limitations. (As long as you can play, then you can download!)
 // @description:zh-Cn  直接获取视频和音频二进制流，打破所有下载限制。（只要你可以播放，你就可以下载！）
 // @author       dabaisuv
 // @match        *://*/*
+// @exclude      https://mail.qq.com/*
+// @exclude      https://wx.mail.qq.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/dabaisuv/Tampermonkey-Script/main/Unlimited_downloader.js
@@ -35,7 +37,7 @@
       return _endOfStream.apply(this, arguments)
    }
    window.MediaSource.prototype.endOfStream.toString = function() {
-       onsole.log('endOfStream hook is detecting!');
+       console.log('endOfStream hook is detecting!');
       return _endOfStream.toString();
    }
 
