@@ -130,6 +130,11 @@
    if (window.autoDownload === 1) {
       let autoDownInterval = setInterval(() => {
          //document.querySelector('video').playbackRate = 16.0;
+         let vd=document.querySelector('video');
+          if(vd && vd.playbackRate != 16){
+              vd.playbackRate = 16;
+              vd.volume=0
+          }
          if (window.isComplete === 1) {
             download();
          }
